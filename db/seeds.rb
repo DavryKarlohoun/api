@@ -5,6 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+Question.destroy_all
+Answer.destroy_all
+MeowQuestion.destroy_all
+MeowAnswer.destroy_all
 User.create!(full_name: "ryan", email: "r@exmple.com", password: "password", token: SecureRandom.hex, display_name: "rgraham")
 User.create!(full_name: "david", email: "d@example.com", password: "password", token: SecureRandom.hex, display_name: "dbern")
 User.create!(full_name: "terry", email: "t@example.com", password: "password", token: SecureRandom.hex, display_name: "tkalhoun")
@@ -32,5 +37,19 @@ questions = Question.all
   Answer.create!(
     user_id: users.sample.id,
     question_id: questions.sample.id,
-    answer_text: Faker::Lorem.paragraph)  
+    answer_text: Faker::Lorem.paragraph)
+end
+
+answers = Answer.all
+200.times do
+  MeowAnswer.create!(user_id: users.sample.id,
+  answer_id: answers.sample.id,
+  up: [true, false].sample)
+end
+
+
+100.times do
+  MeowQuestion.create!(user_id: users.sample.id,
+  question_id: questions.sample.id,
+  up: [true, false].sample)
 end
