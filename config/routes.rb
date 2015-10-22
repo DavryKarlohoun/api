@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  get 'meows/add'
+
+  get 'answers/add'
+
+  get 'questions/index'
+
+  get 'questions/show'
+
+  get 'questions/edit'
+
+  get 'questions/add'
+
+  get 'users/show'
+
+  get 'users/edit'
+
+  get 'users/add'
+
+  get 'users/delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
