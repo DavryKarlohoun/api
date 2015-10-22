@@ -8,3 +8,5 @@ branches:
     - master
 cache: bundler
 language: ruby
+before_script:
+  - "rake db:migrate RAILS_ENV=test"
