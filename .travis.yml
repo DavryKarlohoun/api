@@ -6,6 +6,5 @@ deploy:
 branches:
   only:
     - master
-bundler_args: --without development --deployment --job$
 cache: bundler
 language: ruby
