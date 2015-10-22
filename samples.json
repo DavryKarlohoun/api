@@ -1,0 +1,158 @@
+// QUESTION READ FEE RESPONSE
+{
+  "question_id": 1,
+  "user": {
+    "user_id": 2,
+    "email": "david@bernheisel.com",
+    "display_name": "AwesomeDude",
+    "user_meows": 49,
+    "profile_url": "https://ourapp.com/users/1"
+  },
+  "title": "Bla",
+  "description": "BlaBla",
+  "created_at": "2010-01-01T00:55:46Z"
+  "question_meows": 39,
+  "answers": [
+    //answer 1
+    {
+      "answer_id": 939,
+      "accepted": true,
+      "answer_text": "Bla Bla Bla Bla",
+      "answered_at": "2010-01-02T00:55:46Z",
+      "answer_meows": 39,
+      "user": {
+        "user_id": 2,
+        "email": "terry@calhoun.com",
+        "display_name": "AwesomeDude5",
+        "user_meows": 49,
+        "profile_url": "https://ourapp.com/users/2"
+      }
+    },
+    {
+      "answer_id": 938,
+      "accepted": false,
+      "answer_text": "Bla Bla Bla Bla",
+      "answered_at": "2010-01-02T00:55:46Z",
+      "answer_meows": 399,
+      "user": {
+        "user_id": 2,
+        "email": "ryan@graham.com",
+        "display_name": "AwesomeDude2",
+        "user_meows": 49,
+        "profile_url": "https://ourapp.com/users/3"
+      }
+    },
+    {
+      "answer_id": 938,
+      "accepted": false,
+      "answer_text": "Bla Bla Bla Bla",
+      "answered_at": "2010-01-02T00:55:46Z",
+      "answer_meows": 398,
+      "user": {
+        "user_id": 2,
+        "email": "terry@drumslayer.com",
+        "display_name": "AwesomeDude3",
+        "user_meows": 49,
+        "profile_url": "https://ourapp.com/users/4"
+      }
+    },
+  ]},
+}
+
+// QUESTION BROWSE - FEE RESPONSE
+[
+  // Question 1
+  {
+    "question_id": 1,
+    "user": {
+      "user_id": 2,
+      "email": "david@bernheisel.com",
+      "display_name": "AwesomeDude",
+      "user_meows": 49,
+      "profile_url": "https://ourapp.com/users/1"
+    },
+    "title": "Bla",
+    "description": "BlaBla",
+    "created_at": "2010-01-01T00:55:46Z"
+    "question_meows": 39,
+    "answer_count": 3
+  },
+  // Question 2
+  {
+    "question_id": 2,
+    "user": {
+      "user_id": 2,
+      "email": "david@bernheisel.com",
+      "display_name": "AwesomeDude",
+      "user_meows": 49,
+      "profile_url": "https://ourapp.com/users/1"
+    },
+    "title": "Bla",
+    "description": "BlaBla",
+    "created_at": "2010-01-01T00:55:46Z"
+    "question_meows": 39,
+    "answer_count": 3
+  }
+]
+
+// QUESTION ADD - FEE REQUEST
+{
+  "user_token": "abc123",
+  "title": "Bla",
+  "description": "BlaBla"
+}
+
+// QUESTION EDIT - FEE REQUEST
+{
+  "question_id": 2
+  "accepted_answer_id": 3983,
+  "title": "Bla",
+  "description": "BlaBla",
+  "user_token": "abc123"
+}
+
+// ANSWER ADD - FEE REQUEST
+{
+  "question_id": 1
+  "user_token": "abc123",
+  "answer_text": "BlaBla"
+}
+
+// MEOW ADD - FEE REQUEST
+{
+  "question_id": 1,
+  //"answer_id": 2,
+  "user_token": "abc123",
+  "up": true // false
+}
+
+// USER READ - FEE RESPONSE
+{
+  "user_id": 2,
+  "display_name": "CarlosTheMan",
+  "email": "yeeaaa@carlos.com",
+  "full_name": "Carlos Santana",
+  "questions_asked": 3,
+  "answers_given": 5,
+  "meows_questions": 384,
+  "meows_answers": 34
+}
+
+// USER EDIT - FEE REQUEST
+{
+  "user_id": 3,
+  "display_name": "CarlosTheMan",
+  "email": "yeeaaa@carlos.com",
+  "full_name": "Carlos Santana",
+  "password": "abc123"
+}
+
+// USER ADD - FEE REQUEST
+{
+  "display_name": "CarlosTheMan",
+  "email": "yeeaaa@carlos.com",
+  "full_name": "Carlos Santana",
+  "password": "abc123"
+}
+
+
