@@ -32,7 +32,5 @@ questions = Question.all
   Answer.create!(
     user_id: users.sample.id,
     question_id: questions.sample.id,
-    answer_text: Faker::Lorem.paragraph)
-
-    
+    answer_text: Faker::Lorem.paragraph)  
 end
