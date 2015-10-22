@@ -10,6 +10,7 @@ Question.destroy_all
 Answer.destroy_all
 MeowQuestion.destroy_all
 MeowAnswer.destroy_all
+
 User.create!(full_name: "ryan", email: "r@exmple.com", password: "password", token: SecureRandom.hex, display_name: "rgraham")
 User.create!(full_name: "david", email: "d@example.com", password: "password", token: SecureRandom.hex, display_name: "dbern")
 User.create!(full_name: "terry", email: "t@example.com", password: "password", token: SecureRandom.hex, display_name: "tkalhoun")
@@ -29,7 +30,9 @@ users = User.all
   Question.create!(
     user_id: users.sample.id,
     title: Faker::Lorem.sentence,
-    description: Faker::Lorem.paragraph)
+    description: Faker::Lorem.paragraph,
+    #accepted_answer_id:
+  )
 end
 
 questions = Question.all
@@ -38,6 +41,15 @@ questions = Question.all
     user_id: users.sample.id,
     question_id: questions.sample.id,
     answer_text: Faker::Lorem.paragraph)
+end
+
+accepted_answers = (1..200).to_a.shuffle.take(50)
+question_ids = Question.all.pluck(:id)
+question_ids.each do |q|
+  break if accepted_answers.length == 0
+  answer = accepted_answers.sample
+  Question.find(q).update(accepted_answer_id: answer)
+  accepted_answers.delete(answer)
 end
 
 answers = Answer.all
