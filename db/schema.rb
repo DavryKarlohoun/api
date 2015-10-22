@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022200440) do
+ActiveRecord::Schema.define(version: 20151022200704) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20151022200440) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "answers", ["user_id", "question_id"], name: "index_answers_on_user_id_and_question_id"
+
   create_table "meow_answers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "answer_id"
@@ -29,6 +31,8 @@ ActiveRecord::Schema.define(version: 20151022200440) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "meow_answers", ["user_id", "answer_id"], name: "index_meow_answers_on_user_id_and_answer_id"
+
   create_table "meow_questions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
@@ -36,6 +40,8 @@ ActiveRecord::Schema.define(version: 20151022200440) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "meow_questions", ["user_id", "question_id"], name: "index_meow_questions_on_user_id_and_question_id"
 
   create_table "questions", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,6 +52,8 @@ ActiveRecord::Schema.define(version: 20151022200440) do
     t.datetime "updated_at",         null: false
   end
 
+  add_index "questions", ["user_id", "accepted_answer_id", "title"], name: "index_questions_on_user_id_and_accepted_answer_id_and_title"
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "full_name"
@@ -54,5 +62,7 @@ ActiveRecord::Schema.define(version: 20151022200440) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "users", ["token", "email"], name: "index_users_on_token_and_email"
 
 end
