@@ -1,0 +1,10 @@
+deploy:
+  provider: heroku
+  app: cats-overflow
+  on:
+    repo: DavryKarlohoun/api
+branches:
+  only:
+    - master
+cache: bundler
+language: ruby
