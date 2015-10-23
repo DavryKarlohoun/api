@@ -8,6 +8,6 @@ class QuestionsController < ApplicationController
   def edit
   end
 
-  def add
+  def create
   end
 end

@@ -2,12 +2,12 @@
 
 one:
   user_id: 1
-  accepted_answer_id: 1
+  accepted_answer_id:
   title: MyString
-  decription: MyText
+  description: MyText
 
 two:
   user_id: 1
   accepted_answer_id: 1
   title: MyString
-  decription: MyText
+  description: MyText

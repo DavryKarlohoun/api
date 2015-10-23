@@ -1,4 +1,4 @@
 class AnswersController < ApplicationController
-  def add
+  def create
   end
 end
