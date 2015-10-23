@@ -10,4 +10,8 @@ class QuestionsController < ApplicationController
 
   def create
   end
+
+  def question_params
+      params.require(:question).permit(:user_id, :accepted_answer_id, :title, :description)
+  end
 end

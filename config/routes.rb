@@ -1,23 +1,16 @@
 Rails.application.routes.draw do
-  get 'meows/add'
+  get 'meow_answers/create'
 
-  get 'answers/add'
+  get 'meow_questions/create'
 
-  get 'questions/index'
+  get 'meows_answers/create'
 
-  get 'questions/show'
+  get 'meows_questions/create'
 
-  get 'questions/edit'
-
-  get 'questions/add'
-
-  get 'users/show'
-
-  get 'users/edit'
-
-  get 'users/add'
-
-  get 'users/delete'
+  post 'meows/create'
+  post 'answers/create'
+  resources :questions, only: [:index, :show, :edit, :create]
+  resources :users, only: [:show, :edit, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

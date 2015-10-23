@@ -10,4 +10,8 @@ class UsersController < ApplicationController
 
   def delete
   end
+
+  def user_params
+      params.require(:user).permit(:full_name, :email, :password, :token, :display_name)
+  end
 end
