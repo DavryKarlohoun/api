@@ -1,4 +1,4 @@
 class MeowsController < ApplicationController
-  def add
+  def create
   end
 end

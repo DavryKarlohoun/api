@@ -1,1 +1,10 @@
 language: ruby
+deploy:
+  provider: heroku
+  api_key:
+  app: cat-overflow
+  on:
+    repo: DavryKarlohoun/api
+branches:
+  only:
+    - master
