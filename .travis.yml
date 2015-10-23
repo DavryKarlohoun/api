@@ -1,14 +1,1 @@
-deploy:
-  provider: heroku
-  api_key:
-    secure: WLz3RhbSqiuNjcBawxuQchF03xG1gOdL9k9d84mFmp5OeEShJFKzbPn1tjMwwlK6aW+tUhWHu+3u5r1pUAKgBIy0d+m4pQQXGdL//sG1WdDsCudgKDg6kE/mBExmJe17ngBnpQZvOetgQJUVSDAZAO/ppUhWYBx+6C8EYGmx2FJVlOp7mANqHXWThOcjfpGBd9C8T39v6scIcMrm6V4tUJlCXvInsqoLAWCF6G743mHSYBryzQxem1BV0bMNc5J5441OEH093RGSv+n4OZQzuD91j1kD87fbJOoKy3azn6rzNutR9T3KiUnsj2/HoXt6DP262B5c2NApTtq0qUNlhIzvP84KtX6RswIaj4wex6rf10SMjNCAYoFtTQ1ZlQzUvwhxEDf4NSB2yOdtyMZF9CanuZ28nqYPCH/uESd4qgP0rPEfpEuMp6RIS1HroSln9hafVxVs9NCQKHLPBuoR2spr/xybmUOgWFwIIXwcqtBj2y8ahyosispzistXkB79PUEPCI3E5j4rTwPaekkdFDv9Yo+VHHIX/fCAFgH694bM+5T3TjdmHqhDPWSlq1RgODo+S3NWY6GhyPMX5ivMTf48zddfoF/SVTsLiyewVD4JNk6H6NLZnIkblaGpVRalFzPawjEEx8q35zmJq2htvQ42GZDiJDNB13g4mpbZzTk=
-  app: cats-overflow
-  on:
-    repo: DavryKarlohoun/api
-branches:
-  only:
-    - master
-cache: bundler
 language: ruby
-before_script:
-  - "rake db:migrate RAILS_ENV=test"
