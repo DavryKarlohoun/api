@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'meow_questions/create'
   post 'answers/create'
   resources :questions, only: [:index, :show, :edit, :create]
-  resources :users, only: [:show, :edit, :create, :destroy]
+  resources :users, only: [:show, :update, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

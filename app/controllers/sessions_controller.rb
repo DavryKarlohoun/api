@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
-    u = User.find_by(email: params[:email])
+    u = User.where(email: params[:email]).first
     if u && u.authenticate(params[:password])
       u.token = SecureRandom.hex
       u.save
@@ -13,12 +13,14 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    u = User.find_by(token: params[:token])
-    u.token = nil
-    u.save
-    @current_user = nil
+    u = User.where(token: params[:token]).first
+    if u
+      u.token = nil
+      u.save
+      @current_user = nil
+    else
+      render json: { error: 'Invalid token' }, status: :notfound
+    end
   end
 
 end
-
-# 2e9cd1fd7762173e6ecd74fea3b1ea8c
