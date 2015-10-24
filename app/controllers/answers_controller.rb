@@ -3,7 +3,12 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
   end
 
+
+  def show
+  end
+
   def answer_params
       params.require(:answer).permit(:id, :user_id, :question_id, :answer_text)
   end
 end
+
