@@ -8,4 +8,4 @@ one:
 two:
   user_id: 1
   question_id: 1
-  up: false
+  up: true
