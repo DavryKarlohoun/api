@@ -11,7 +11,7 @@ Answer.destroy_all
 MeowQuestion.destroy_all
 MeowAnswer.destroy_all
 
-User.create!(full_name: "ryan", email: "r@exmple.com", password: "password", token: SecureRandom.hex, display_name: "rgraham")
+User.create!(full_name: "ryan", email: "r@example.com", password: "password", token: SecureRandom.hex, display_name: "rgraham")
 User.create!(full_name: "david", email: "d@example.com", password: "password", token: SecureRandom.hex, display_name: "dbern")
 User.create!(full_name: "terry", email: "t@example.com", password: "password", token: SecureRandom.hex, display_name: "tkalhoun")
 User.create!(full_name: "karlo", email: "k@example.com", password: "password", token: SecureRandom.hex, display_name: "keleuterio")

@@ -12,10 +12,11 @@ class UsersController < ApplicationController
   # POST /users
    def create
      @user = User.new(user_params)
-
+     @user.token = SecureRandom.hex
      if @user.save
+       render @user
      else
-       render :new
+       render json: {error: ""}
      end
    end
 

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
   post 'meow_answers/create'
   post 'meow_questions/create'
   post 'answers/create'
