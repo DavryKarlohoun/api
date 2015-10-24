@@ -13,4 +13,5 @@ json.array! @questions do |q|
   json.created_at q.created_at
   json.updated_at q.updated_at
   json.question_meows q.meow_questions.count
+  json.answers_count q.answers.count
 end
