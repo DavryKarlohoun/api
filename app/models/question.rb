@@ -5,6 +5,10 @@ class Question < ActiveRecord::Base
   has_many :meow_questions
   has_many :meow_answers
 
+  validates :user_id, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+
   scope :by_meows, -> {
     Question.joins('LEFT OUTER JOIN meow_questions ON questions.id = meow_questions.question_id ')
       .select("questions.*, count(meow_questions.question_id) as question_count")

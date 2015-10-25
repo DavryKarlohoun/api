@@ -9,8 +9,10 @@ class SessionsController < ApplicationController
       if u.save
         @current_user = u
         render u
+      elsif u.errors
+        render json: { error: {code: 400, server_message: u.errors}}, status: :bad_request
       else
-        render json: { error: {code: 500, message: "Could not save user", server_message: u.errors}}, status: :error
+        render json: { error: {code: 500, message: "Could not save user"}}, status: :internal_server_error
       end
     else
       render json: { error: {code: 401, message: 'Invalid username or password' }}, status: :unauthorized
@@ -24,7 +26,7 @@ class SessionsController < ApplicationController
       u.save
       @current_user = nil
     else
-      render json: { error: {code: 404, message: 'User not found by token' }}, status: :notfound
+      render json: { error: {code: 404, message: 'User not found by token' }}, status: :not_found
     end
   end
 

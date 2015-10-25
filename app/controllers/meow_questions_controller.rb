@@ -1,12 +1,18 @@
 class MeowQuestionsController < ApplicationController
   def create
     u = User.where(token: request.headers["user-token"]).first
-    mq = MeowQuestion.new(meow_question_params)
-    mq.user_id = u.id
-    if mq.save
-      render mq
+    if u
+      mq = MeowQuestion.new(meow_question_params)
+      mq.user_id = u.id
+      if mq.save
+        render mq
+      elsif mq.errors
+        render json: {error: {code: 400, server_message: mq.errors}}, status: :bad_request
+      else
+        render json: {error: {code: 500, message: "Could not save meow"}}, status: :internal_server_error
+      end
     else
-      render json: {error: {code: 500, message: "Could not save meow", server_message: mq.errprs}}, status: :error
+      render json: {error: {code: 404, message: "Could not find user by token"}}, status: :not_found
     end
   end
 

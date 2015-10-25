@@ -26,7 +26,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should get destroy" do
     request.accept = "application/json"
-    delete_me_user = User.create!(full_name: "deleteme", email: "deleteme@me.com", password:"deleted", token: "test", display_name: "deleteme")
+    delete_me_user = User.create!(full_name: "deleteme", email: "deleteme@me.com", password:"deleteddf", token: "test", display_name: "deleteme")
     request.headers["user-token"] = delete_me_user.token
     assert_difference 'User.count', -1 do
       delete :destroy, id: delete_me_user
