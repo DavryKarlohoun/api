@@ -9,12 +9,8 @@ class Question < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
 
-  scope :by_meows, -> {
-    Question.joins('LEFT OUTER JOIN meow_questions ON questions.id = meow_questions.question_id ')
-      .select("questions.*, count(meow_questions.question_id) as question_count")
-      .group("questions.id")
-      .order("question_count DESC")
-    }
+  scope :by_meows, -> { Question.all.sort { |a,b| a.net_meows <=> b.net_meows}.reverse }
+  scope :with_accepted_answer, -> { Question.all.where('accepted_answer_id IS NOT NULL') }
 
   def net_meows
     meow_questions.where(up: true).count - meow_questions.where(up: false).count

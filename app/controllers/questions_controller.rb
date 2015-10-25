@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
       if question.user == u
         if question.user.token == request.headers["user-token"]
           question.update(question_params)
-          render question
+          render question, status: :created
         else
           render json: {error: {code: 403, message: "Provided token does not match user's token"}}, status: :forbidden
         end

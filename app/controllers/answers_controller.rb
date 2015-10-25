@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
       a = Answer.new(answer_params)
       a.user_id = u.id
       if a.save
-        render a
+        render a, status: :created
       elsif a.errors
         render json: {error: {code: 400, server_message: a.errors}}, status: :bad_request
       else
