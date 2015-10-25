@@ -7,10 +7,10 @@ json.array! @questions do |q|
     json.user_meows q.user.total_meows
     json.profile_url "http://test.com/users/#{q.user.id}"
   end
-  json.accepted_answer_id q.accepted_answer_id
   json.title q.title
   json.description q.description
   json.created_at q.created_at
   json.updated_at q.updated_at
   json.question_meows q.meow_questions.count
+  json.answers_count q.answers.count
 end

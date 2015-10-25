@@ -3,7 +3,9 @@ class SessionsController < ApplicationController
   def create
     u = User.where(email: params[:email]).first
     if u && u.authenticate(params[:password])
-      u.token = SecureRandom.hex
+      begin
+        u.token = SecureRandom.hex
+      end while u.class.exists?(token: token)
       u.save
       @current_user = u
       render u
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    u = User.where(token: params[:token]).first
+    u = User.where(token: request.headers["user-token"]).first
     if u
       u.token = nil
       u.save

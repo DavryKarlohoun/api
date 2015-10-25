@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     u = User.where(id: params[:id]).first
     if u
-      if u.token == params[:token]
+      if u.token == request.headers["user-token"]
         u.update(user_params)
         render u
       else
@@ -24,21 +24,21 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-   def create
-     @user = User.new(user_params)
-     @user.token = SecureRandom.hex
-     if @user.save
-       render @user
-     else
-       render json: {error: ""}
-     end
-   end
+  def create
+    user = User.new(user_params)
+
+    if user.save
+      render user
+    else
+      render json: {error: "Could not save user"}, status: :error
+    end
+  end
 
   # DELETE /users/1
   def destroy
     u = User.where(id: params[:id]).first
     if u
-      if u.token == params[:token]
+      if u.token == request.headers["user-token"]
         User.find(params[:id]).destroy
       else
         render json: {error: 'Invalid token'}, status: :unauthorized
@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:id, :full_name, :email, :password, :token, :display_name)
+    params.permit(:id, :full_name, :email, :password, :user_token, :display_name)
   end
 end
