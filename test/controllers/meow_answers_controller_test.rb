@@ -1,8 +1,15 @@
 require 'test_helper'
 
 class MeowAnswersControllerTest < ActionController::TestCase
+  setup do
+    @user = users(:one)
+    @answer = answers(:one)
+  end
+
   test "should post create" do
-    post :create, format: :json, meow_answer: {up: true, user_id: 2, answer_id: 1}
+    request.accept = "application/json"
+    request.headers["user-token"] = @user.token
+    post :create, {up: true, answer_id: @answer.id}
     assert_response :success
   end
 end

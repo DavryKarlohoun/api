@@ -19,13 +19,16 @@ class QuestionsControllerTest < ActionController::TestCase
 
   test "should put edit" do
     request.accept = "application/json"
-    put :edit, id: @question, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
+    request.headers["user-token"] = @question.user.token
+    put :update, {id: @question.id, accepted_answer_id: 2, title: "title", description: "description"}
     assert_response :success
   end
 
   test "should post create" do
     request.accept = "application/json"
-    post :create, id: @question, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
+    temp_user = User.create!(full_name: "temp_user", email: "temp_user@me.com", password:"temp_user", token: "test", display_name: "temp_user")
+    request.headers["user-token"] = "test"
+    post :create, {accepted_answer_id: 2, title: "title", description: "description"}
     assert_response :success
   end
 

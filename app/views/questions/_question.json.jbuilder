@@ -17,5 +17,11 @@ json.answers question.answers do |a|
   json.answer_text a.answer_text
   json.answered_at a.created_at
   json.answer_meows a.meow_answers.count
-  json.user a.user
+  json.user do
+    json.user_id a.user.id
+    json.email a.user.email
+    json.display_name a.user.display_name
+    json.user_meows a.user.total_meows
+    json.profile_url "https://ourapp.com/users/#{a.user.id}"
+  end
 end
