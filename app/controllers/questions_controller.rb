@@ -6,7 +6,11 @@ class QuestionsController < ApplicationController
 
   def show
     q = Question.where(id: params[:id]).first
-    q ? render(q) : render(json: {error: "Could not find question"})
+    if q
+      render q
+    else
+      render json: {error: {code: 404, message: "Could not find question"}}
+    end
   end
 
   def edit
@@ -17,13 +21,13 @@ class QuestionsController < ApplicationController
         if question.user.token == request.headers["user-token"]
           question.update(question_params)
         else
-          render json: {error: "Provided token does not match user's token"}
+          render json: {error: {code: 403, message: "Provided token does not match user's token"}}, status: :forbidden
         end
       else
-        render json: {error: "Question does not belong to user"}
+        render json: {error: {code: 403, message: "Question does not belong to user"}}, status: :forbidden
       end
     else
-      render json: {error: "Could not find user by token"}
+      render json: {error: {code: 404, message: "Could not find user by token"}}, status: :notfound
     end
   end
 
@@ -35,7 +39,7 @@ class QuestionsController < ApplicationController
       q.save
       render q
     else
-      render json: {error: "Could not find user"}
+      render json: {error: {code: 404, message: "Could not find user"}}, status: :notfound
     end
   end
 

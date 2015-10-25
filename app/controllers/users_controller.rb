@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if u
       render u
     else
-      render json: { error: 'Invalid user' }, status: :notfound
+      render json: { error: {code: 404, message: 'Invalid user' }}, status: :notfound
     end
   end
 
@@ -16,21 +16,21 @@ class UsersController < ApplicationController
         u.update(user_params)
         render u
       else
-          render json: { error: 'Invalid token' }, status: :unauthorized
+        render json: { error: {code: 403, message: 'Invalid token' }}, status: :forbidden
       end
     else
-      render json: { error: 'Invalid user' }, status: :notfound
+      render json: { error: {code: 404, message: 'Invalid user' }}, status: :notfound
     end
   end
 
   # POST /users
   def create
-    user = User.new(user_params)
+    u = User.new(user_params)
 
-    if user.save
-      render user
+    if u.save
+      render u
     else
-      render json: {error: "Could not save user"}, status: :error
+      render json: {error: {code: 500, message: "Could not save user", server_message: u.errors}}, status: :error
     end
   end
 
@@ -41,10 +41,10 @@ class UsersController < ApplicationController
       if u.token == request.headers["user-token"]
         User.find(params[:id]).destroy
       else
-        render json: {error: 'Invalid token'}, status: :unauthorized
+        render json: {error: {code: 403, message: 'Invalid token'}}, status: :forbidden
       end
     else
-      render json: {error: 'Invalid User' }, status: :notfound
+      render json: {error: {code: 404, message: 'Could not find user' }}, status: :notfound
     end
   end
 
