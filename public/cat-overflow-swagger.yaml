@@ -1,0 +1,492 @@
+swagger: '2.0'
+info:
+  version: 0.1.0
+  title: Cat Overflow API
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+
+  /search:
+    get:
+      description: Search `Questions` objects with parameter
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/QuestionBrowse'
+        '404':
+          description: Not found
+          schema:
+            $ref: '#/definitions/Error'
+
+  /questions:
+    get:
+      description: Gets `Questions` objects.
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/QuestionBrowse'
+
+    post:
+      description: Create a new Question
+      parameters:
+      - name: user_token
+        in: header
+        description: User Token for authorization
+        required: true
+        type: string
+      - name: question
+        in: body
+        description: question object to create
+        required: true
+        schema:
+          $ref: '#/definitions/NewQuestion'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/Question'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /questions/{id}:
+    get:
+      description: Show Question
+      parameters:
+      - name: id
+        type: integer
+        in: path
+        description: ID of question to show
+        required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Question'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+    put:
+      description: Update a Question
+      parameters:
+      - name: id
+        in: path
+        description: ID of question to update
+        required: true
+        type: integer
+      - name: user_token
+        in: header
+        description: User Token for authorization
+        required: true
+        type: string
+      - name: question
+        in: body
+        description: Question object to edit
+        required: true
+        schema:
+          $ref: '#/definitions/NewQuestion'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/Question'
+        '403':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /answers:
+    post:
+      description: Create a new Answer
+      parameters:
+      - name: user_token
+        in: header
+        description: User Token for authorization
+        required: true
+        type: string
+      - name: answer
+        in: body
+        description: Answer object to create
+        required: true
+        schema:
+          $ref: '#/definitions/NewAnswer'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/Answer'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /answers/{answer_id}:
+    get:
+      description: Show an answer
+      parameters:
+      - name: answer_id
+        in: path
+        description: Answer ID to show
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: Success
+          schema: 
+            $ref: '#/definitions/Answer'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /users:
+    post:
+      description: Create a new user
+      parameters:
+      - name: user
+        in: body
+        description: Create a new user
+        required: true
+        schema:
+          $ref: '#/definitions/NewUser'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/FullAnswer'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+    
+  /users/{user_id}:
+    get:
+      description: Show a user
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        type: integer
+      - name: user_token
+        in: header
+        description: User Token for authorization
+        type: string
+        required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/FullUser'
+    put:
+      description: Update a user
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        type: integer
+      - name: user_token
+        in: header
+        description: User Token for authorization
+        type: string
+        required: true
+      - name: user
+        in: body
+        description: Update user
+        required: true
+        schema:
+          $ref: '#/definitions/NewUser'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/FullUser'
+
+    delete:
+      description: Delete a user
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        type: integer
+      - name: user_token
+        in: header
+        description: User's token for authorization
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /login:
+    post:
+      description: Create a new user
+      parameters:
+      - name: user
+        in: body
+        description: Create a new user
+        required: true
+        schema:
+          $ref: '#/definitions/LoginUser'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/FullUser'
+        '400':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /logout:
+    delete:
+      description: Logout a user
+      parameters:
+      - name: user_token
+        in: header
+        description: User's token for authorization
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+
+  Error:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+
+  User:
+    properties:
+      user_id:
+        type: integer
+      display_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      user_meows:
+        type: integer
+      profile_url:
+        type: string
+
+  FullUser:
+    properties:
+      user_id: 
+        type: integer
+      token:
+        type: string
+      display_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      questions_asked:
+        type: integer
+      answers_given:
+        type: integer
+      meows_total:
+        type: integer
+      meows_questions:
+        type: integer
+      meows_answers:
+        type: integer
+      created_at:
+        type: string
+        format: date-time
+      profile_url:
+        type: string
+    
+  LoginUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  
+  NewUser:
+    properties:
+      display_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+
+  Question:
+    properties:
+      question_id:
+        type: integer
+      user:
+        type: object
+        $ref: '#/definitions/User'
+      title:
+        type: string
+      description:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      question_meows:
+        type: integer
+      answers:
+        type: array
+        items:
+          $ref: '#/definitions/Answer'
+  
+  QuestionBrowse:
+    properties:
+      question_id:
+        type: integer
+      user:
+        type: object
+        $ref: '#/definitions/User'
+      title:
+        type: string
+      description:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      question_meows:
+        type: integer
+      answers_count:
+        type: integer
+
+
+  NewQuestion:
+    properties:
+      title:
+        type: string
+      description:
+        type: string
+        
+  Answer:
+    properties:
+      answer_id:
+        type: integer
+      accepted:
+        type: boolean
+      answer_text:
+        type: string
+      answered_at:
+        type: string
+        format: date-time
+      answer_meows:
+        type: integer
+      user:
+        type: object
+        $ref: '#/definitions/User'
+
+  FullAnswer:
+    properties:
+      answer_id:
+        type: integer
+      question_id:
+        type: integer
+      accepted:
+        type: boolean
+      answer_text:
+        type: string
+      answered_at:
+        type: string
+        format: date-time
+      answer_meows:
+        type: integer
+      user:
+        type: object
+        $ref: '#/definitions/User'
+
+  NewAnswer:
+    properties:
+      question_id:
+        type: integer
+      answer_text:
+        type: string
+
+
+
+  # MeowQuestion:
+  #   properties:
+  #     up:
+  #       type: boolean
+  #     question:
+  #       type: object
+  #       $ref: '#/definitions/Question'
+  #     user:
+  #       type: object
+  #       $ref: '#/definitions/User'
+  
+  # MeowAnswer:
+  #   properties:
+  #     up:
+  #       type: boolean
+  #     answer:
+  #       type: object
+  #       $ref: '#/definitions/Answer'
+  #     user:
+  #       type: object
+  #       $ref: '#/definitions/User'
+        

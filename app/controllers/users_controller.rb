@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   def show
     u = User.where(id: params[:id]).first
     if u
-      render u
+      if u.token == request.headers["user-token"]
+        render u
+      else
+        render json: { error: {code: 403, message: 'Invalid token' }}, status: :forbidden
+      end
     else
       render json: { error: {code: 404, message: 'Invalid user' }}, status: :not_found
     end
