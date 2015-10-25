@@ -11,21 +11,23 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should put edit" do
     request.accept = "application/json"
-    put :edit, id: @user, user: {full_name: "ryan", email: "r@exmple.com", password: "password", token: SecureRandom.hex, display_name: "rgraham"}
+    request.headers["user-token"] = @user.token
+    put :update, id: @user, user: {full_name: "ryan", email: "r@exmple.com", password: "password", display_name: "rgraham"}
     assert_response :success
   end
 
   test "should get create" do
     request.accept = "application/json"
-    post :create, id: @user, user: {full_name: "ryan", email: "r@exmple.com", password: "password", token: SecureRandom.hex, display_name: "rgraham"}
+    post :create, {full_name: "ryan", email: "r@exmple.com", password: "password", display_name: "rgraham"}
     assert_response :success
   end
 
   test "should get destroy" do
     request.accept = "application/json"
-    delete_me_user = User.create!(full_name: "deleteme", email: "deleteme@me.com", password:"deleted", token: "2134", display_name: "deleteme")
+    delete_me_user = User.create!(full_name: "deleteme", email: "deleteme@me.com", password:"deleted", token: "test", display_name: "deleteme")
+    request.headers["user-token"] = delete_me_user.token
     assert_difference 'User.count', -1 do
       delete :destroy, id: delete_me_user
       assert_response :success

@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     if u && u.authenticate(params[:password])
       begin
         u.token = SecureRandom.hex
-      end while u.class.exists?(token: token)
+      end while u.class.exists?(token: u.token)
       u.save
       @current_user = u
       render u

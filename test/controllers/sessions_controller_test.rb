@@ -14,7 +14,8 @@ class SessionsControllerTest < ActionController::TestCase
   test "should delete destroy" do
     request.accept = "application/json"
     u = User.create!(email: "test-#{rand(1.1000)}@whatever.com", password: "password", token: "test")
-    delete :destroy, token: u.token
+    request.headers["user-token"] = u.token
+    delete :destroy
     assert_response :success
   end
 
