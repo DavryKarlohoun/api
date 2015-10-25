@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get   'meow_questions/:id' => 'meow_questions#show'
   post  'answers' => 'answers#create'
   get   'answers/:id' => 'answers#show'
+  get   'search' => 'questions#search'
+  
   resources :questions, only: [:index, :show, :update, :create]
   resources :users, only: [:show, :update, :create, :destroy]
 

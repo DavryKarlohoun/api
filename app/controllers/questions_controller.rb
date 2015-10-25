@@ -4,6 +4,16 @@ class QuestionsController < ApplicationController
     @questions = Question.by_meows
   end
 
+  def search
+    if params[:search]
+      q = "%#{params[:search]}%"
+      @questions = Question.where('title LIKE ? OR description LIKE ?', q, q)
+      render :index
+    else
+      render json: {error: {code: 400, message: "Must provide a search term"}}, status: :bad_request
+    end
+  end
+
   def create
     u = User.where(token: request.headers["user-token"]).first
     if u
@@ -51,6 +61,6 @@ class QuestionsController < ApplicationController
 
 
   def question_params
-    params.permit(:id, :user_id, :accepted_answer_id, :title, :description)
+    params.permit(:id, :user_id, :search, :accepted_answer_id, :title, :description)
   end
 end
