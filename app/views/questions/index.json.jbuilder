@@ -1,11 +1,19 @@
 json.array! @questions do |q|
   json.question_id q.id
   json.user do
-    json.user_id q.user.id
-    json.email q.user.email
-    json.display_name q.user.display_name
-    json.user_meows q.user.total_meows
-    json.profile_url "http://test.com/users/#{q.user.id}"
+    if q.user
+      json.user_id q.user_id
+      json.email q.user.email
+      json.display_name q.user.display_name
+      json.user_meows q.user.total_meows
+      json.profile_url "http://test.com/users/#{q.user.id}"
+    else
+      json.user_id "Deleted user"
+      json.email "Deleted user"
+      json.display_name "Deleted user"
+      json.user_meows "Deleted user"
+      json.profile_url nil
+    end
   end
   json.title q.title
   json.description q.description
