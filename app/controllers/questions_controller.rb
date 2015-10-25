@@ -2,7 +2,6 @@ class QuestionsController < ApplicationController
   before_action :current_user, only: [:edit, :create]
 
 
-
   def index
     @questions = Question.by_meows
   end
