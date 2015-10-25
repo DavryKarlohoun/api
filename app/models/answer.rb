@@ -7,4 +7,7 @@ class Answer < ActiveRecord::Base
   validates :question_id, presence: true
   validates :answer_text, presence: true
 
+  def net_meows
+    meow_answers.where(up: true).count - meow_answers.where(up: false).count
+  end
 end
