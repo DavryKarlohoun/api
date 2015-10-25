@@ -54,14 +54,14 @@ question_ids.each do |q|
 end
 
 answers = Answer.all
-200.times do
+1000.times do
   MeowAnswer.create!(user_id: users.sample.id,
     answer_id: answers.sample.id,
     up: [true, false].sample)
 end
 
 
-100.times do
+1000.times do
   MeowQuestion.create!(user_id: users.sample.id,
   question_id: questions.sample.id,
   up: [true, false].sample)

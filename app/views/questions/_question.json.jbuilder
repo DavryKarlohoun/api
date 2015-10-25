@@ -10,7 +10,7 @@ json.title question.title
 json.description question.description
 json.created_at question.created_at
 json.question_meows question.meow_questions.count
-json.answers question.answers do |a|
+json.answers question.answers.by_meows do |a|
   a.id == question.accepted_answer_id ? accepted = true : accepted = false
   json.answer_id a.id
   json.accepted accepted
