@@ -6,22 +6,26 @@ class QuestionsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index, format: :json
+    request.accept = "application/json"
+    get :index
     assert_response :success
   end
 
   test "should get show" do
-    get :show, id: @question, format: :json
+    request.accept = "application/json"
+    get :show, id: @question
     assert_response :success
   end
 
   test "should put edit" do
-    put :edit, id: @question, format: :json, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
+    request.accept = "application/json"
+    put :edit, id: @question, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
     assert_response :success
   end
 
   test "should post create" do
-    post :create, format: :json, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
+    request.accept = "application/json"
+    post :create, id: @question, question: {user_id: 1, accepted_answer_id: 2, title: "title", description: "description"}
     assert_response :success
   end
 
