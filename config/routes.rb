@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  post    'login' => 'sessions#create'
+  delete  'logout' => 'sessions#destroy'
 
-  post 'meow_answers/create'
-  post 'meow_questions/create'
-  post 'answers/create'
-  resources :questions, only: [:index, :show, :edit, :create]
+  post  'meow_answers' => 'meow_answers#create'
+  get   'meow_answers/:id' => 'meow_answers#show'
+  post  'meow_questions' => 'meow_questions#create'
+  get   'meow_questions/:id' => 'meow_questions#show'
+  post  'answers' => 'answers#create'
+  get   'answers/:id' => 'answers#show'
+  resources :questions, only: [:index, :show, :update, :create]
   resources :users, only: [:show, :update, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
