@@ -5,7 +5,7 @@ json.array! @questions do |q|
       json.user_id q.user_id
       json.email q.user.email
       json.display_name q.user.display_name
-      json.user_meows q.user.total_meows
+      json.user_meows q.user.net_meows
       json.profile_url "http://test.com/users/#{q.user.id}"
     else
       json.user_id "Deleted user"
@@ -19,6 +19,6 @@ json.array! @questions do |q|
   json.description q.description
   json.created_at q.created_at
   json.updated_at q.updated_at
-  json.question_meows q.meow_questions.count
+  json.question_meows q.net_meows
   json.answers_count q.answers.count
 end

@@ -49,14 +49,15 @@ question_ids.each do |q|
   break if accepted_answers.length == 0
   answer = accepted_answers.sample
   Question.find(q).update(accepted_answer_id: answer)
+  Answer.find(answer).update(question_id: q)
   accepted_answers.delete(answer)
 end
 
 answers = Answer.all
 200.times do
   MeowAnswer.create!(user_id: users.sample.id,
-  answer_id: answers.sample.id,
-  up: [true, false].sample)
+    answer_id: answers.sample.id,
+    up: [true, false].sample)
 end
 
 

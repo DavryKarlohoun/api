@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
                     }
   validates :password, length: { minimum: 8 }, allow_nil: true
 
-  def total_meows
-    meow_questions.count + meow_answers.count
+  def net_meows
+    mq_count = meow_questions.where(up: true).count - meow_questions.where(up: false).count
+    ma_count = meow_answers.where(up: true).count - meow_answers.where(up: false).count
+    mq_count + ma_count
   end
 end

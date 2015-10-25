@@ -16,4 +16,8 @@ class Question < ActiveRecord::Base
       .order("question_count DESC")
     }
 
+  def net_meows
+    meow_questions.where(up: true).count - meow_questions.where(up: false).count
+  end
+
 end

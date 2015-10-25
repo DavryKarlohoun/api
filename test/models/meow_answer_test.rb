@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class MeowAnswerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @answer = answers(:two)
+  end
+
+  test "net_meows is accurate AF" do
+    assert_equal 1, @answer.net_meows
+  end
 end

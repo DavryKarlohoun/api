@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
+  user_id: 2
   question_id: 1
-  up: false
+  up: true
 
 two:
   user_id: 1
-  question_id: 1
+  question_id: 2
   up: true

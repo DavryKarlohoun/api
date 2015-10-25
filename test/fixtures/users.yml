@@ -2,16 +2,24 @@
 
 one:
   id: 1
-  email: MyString
+  email: MyString@something.com
   full_name: MyString
   password_digest: <%= BCrypt::Password.create("password") %>
   token: MyString
-  display_name: Something
+  display_name: Something1
 
 two:
   id: 2
-  email: MyString
+  email: two@email.com
   full_name: MyString
   password_digest: <%= BCrypt::Password.create("password") %>
-  token: MyString
-  display_name: Something
+  token: MyString2
+  display_name: Something2
+
+three:
+  id: 3
+  email: something@email.com
+  full_name: MyString
+  password_digest: <%= BCrypt::Password.create("password") %>
+  token: MyString3
+  display_name: Something3

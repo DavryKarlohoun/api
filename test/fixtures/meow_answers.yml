@@ -7,5 +7,15 @@ one:
 
 two:
   user_id: 1
-  answer_id: 1
+  answer_id: 2
   up: false
+
+three:
+  user_id: 3
+  answer_id: 2
+  up: true
+
+four:
+  user_id: 2
+  answer_id: 2
+  up: true

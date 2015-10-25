@@ -3,5 +3,6 @@ class MeowAnswer < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :answer_id, presence: true
-  validates :up, presence: true
+  #validates :up, presence: true
+
 end
