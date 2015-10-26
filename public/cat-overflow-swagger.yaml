@@ -9,11 +9,11 @@ produces:
 
 paths:
 
-  /search?term:
+  /search?search:
     get:
       description: Search `Questions` objects with parameter
       parameters:
-      - name: term
+      - name: search
         in: query
         description: search term
         required: true
