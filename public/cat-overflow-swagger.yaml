@@ -9,7 +9,7 @@ produces:
 
 paths:
 
-  /search?search:
+  /search.json:
     get:
       description: Search `Questions` objects with parameter
       parameters:
@@ -30,7 +30,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /questions:
+  /questions.json:
     get:
       description: Gets `Questions` objects.
       responses:
@@ -76,7 +76,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /questions/{id}:
+  /questions/{id}.json:
     get:
       description: Show Question
       parameters:
@@ -136,7 +136,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /answers:
+  /answers.json:
     post:
       description: Create a new Answer
       parameters:
@@ -173,7 +173,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /answers/{answer_id}:
+  /answers/{answer_id}.json:
     get:
       description: Show an answer
       parameters:
@@ -192,7 +192,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /users:
+  /users.json:
     post:
       description: Create a new user
       parameters:
@@ -226,7 +226,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /users/{user_id}:
+  /users/{user_id}.json:
     get:
       description: Show a user
       parameters:
@@ -308,7 +308,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /login:
+  /login.json:
     post:
       description: Create a new user
       parameters:
@@ -340,7 +340,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 
-  /logout:
+  /logout.json:
     delete:
       description: Logout a user
       parameters:
