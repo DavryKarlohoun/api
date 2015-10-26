@@ -9,12 +9,12 @@ produces:
 
 paths:
 
-  /search/{term}:
+  /search?term:
     get:
       description: Search `Questions` objects with parameter
       parameters:
       - name: term
-        in: path
+        in: query
         description: search term
         required: true
         type: string
@@ -40,7 +40,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/QuestionBrowse'
-
     post:
       description: Create a new Question
       parameters:
@@ -49,12 +48,16 @@ paths:
         description: User Token for authorization
         required: true
         type: string
-      - name: question
-        in: body
+      - name: title
+        in: formData
+        type: string
         description: question object to create
         required: true
-        schema:
-          $ref: '#/definitions/NewQuestion'
+      - name: description
+        in: formData
+        type: string
+        description: question object to create
+        required: true
       responses:
         '201':
           description: Success
@@ -91,7 +94,6 @@ paths:
           description: Error
           schema:
             $ref: '#/definitions/Error'
-
     put:
       description: Update a Question
       parameters:
@@ -105,12 +107,21 @@ paths:
         description: User Token for authorization
         required: true
         type: string
-      - name: question
-        in: body
-        description: Question object to edit
-        required: true
-        schema:
-          $ref: '#/definitions/NewQuestion'
+      - name: accepted_answer_id
+        in: formData
+        type: integer
+        description: Accepted Answer ID
+        required: false
+      - name: title
+        in: formData
+        type: string
+        description: Title of Question
+        required: false
+      - name: description
+        in: formData
+        type: string
+        description: Description of Question
+        required: false
       responses:
         '201':
           description: Success
@@ -134,12 +145,16 @@ paths:
         description: User Token for authorization
         required: true
         type: string
-      - name: answer
-        in: body
-        description: Answer object to create
+      - name: answer_text
+        in: formData
+        type: string
+        description: question object to create
         required: true
-        schema:
-          $ref: '#/definitions/NewAnswer'
+      - name: question_id
+        in: formData
+        type: integer
+        description: question object to create
+        required: true
       responses:
         '201':
           description: Success
@@ -181,12 +196,26 @@ paths:
     post:
       description: Create a new user
       parameters:
-      - name: user
-        in: body
-        description: Create a new user
+      - name: display_name
+        in: formData
+        type: string
+        description: Display Name of the user. Must be unique.
         required: true
-        schema:
-          $ref: '#/definitions/NewUser'
+      - name: email
+        in: formData
+        type: string
+        description: Email address of the user. Must be unique.
+        required: true
+      - name: full_name
+        in: formData
+        type: string
+        description: Full name of the user
+        required: true
+      - name: password
+        in: formData
+        type: string
+        description: Password for the user. Minimum 8 characters.
+        required: true
       responses:
         '201':
           description: Success
@@ -229,18 +258,31 @@ paths:
         description: User Token for authorization
         type: string
         required: true
-      - name: user
-        in: body
-        description: Update user
-        required: true
-        schema:
-          $ref: '#/definitions/NewUser'
+      - name: display_name
+        in: formData
+        type: string
+        description: Display Name of the user. Must be unique.
+        required: false
+      - name: email
+        in: formData
+        type: string
+        description: Email address of the user. Must be unique.
+        required: false
+      - name: full_name
+        in: formData
+        type: string
+        description: Full name of the user
+        required: false
+      - name: password
+        in: formData
+        type: string
+        description: Password for the user. Minimum 8 characters.
+        required: false
       responses:
         '200':
           description: Success
           schema:
             $ref: '#/definitions/FullUser'
-
     delete:
       description: Delete a user
       parameters:
@@ -270,12 +312,16 @@ paths:
     post:
       description: Create a new user
       parameters:
-      - name: user
-        in: body
-        description: Create a new user
+      - name: email
+        in: formData
+        type: string
+        description: Email address of the user
         required: true
-        schema:
-          $ref: '#/definitions/LoginUser'
+      - name: password
+        in: formData
+        type: string
+        description: Password for the user
+        required: true
       responses:
         '200':
           description: Success
@@ -363,23 +409,23 @@ definitions:
       profile_url:
         type: string
 
-  LoginUser:
-    properties:
-      email:
-        type: string
-      password:
-        type: string
+  # LoginUser:
+  #   properties:
+  #     email:
+  #       type: string
+  #     password:
+  #       type: string
 
-  NewUser:
-    properties:
-      display_name:
-        type: string
-      email:
-        type: string
-      full_name:
-        type: string
-      password:
-        type: string
+  # NewUser:
+  #   properties:
+  #     display_name:
+  #       type: string
+  #     email:
+  #       type: string
+  #     full_name:
+  #       type: string
+  #     password:
+  #       type: string
 
   Question:
     properties:
@@ -422,13 +468,6 @@ definitions:
         type: integer
 
 
-  NewQuestion:
-    properties:
-      title:
-        type: string
-      description:
-        type: string
-
   Answer:
     properties:
       answer_id:
@@ -465,12 +504,12 @@ definitions:
         type: object
         $ref: '#/definitions/User'
 
-  NewAnswer:
-    properties:
-      question_id:
-        type: integer
-      answer_text:
-        type: string
+  # NewAnswer:
+  #   properties:
+  #     question_id:
+  #       type: integer
+  #     answer_text:
+  #       type: string
 
 
 
