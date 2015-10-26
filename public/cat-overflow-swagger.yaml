@@ -3,15 +3,21 @@ info:
   version: 0.1.0
   title: Cat Overflow API
 consumes:
-  - application/json
+  - application/x-www-form-urlencoded
 produces:
   - application/json
 
 paths:
 
-  /search:
+  /search/{term}:
     get:
       description: Search `Questions` objects with parameter
+      parameters:
+      - name: term
+        in: path
+        description: search term
+        required: true
+        type: string
       responses:
         '200':
           description: Success
@@ -164,7 +170,7 @@ paths:
       responses:
         '200':
           description: Success
-          schema: 
+          schema:
             $ref: '#/definitions/Answer'
         '404':
           description: Error
@@ -190,7 +196,7 @@ paths:
           description: Error
           schema:
             $ref: '#/definitions/Error'
-    
+
   /users/{user_id}:
     get:
       description: Show a user
@@ -331,7 +337,7 @@ definitions:
 
   FullUser:
     properties:
-      user_id: 
+      user_id:
         type: integer
       token:
         type: string
@@ -356,14 +362,14 @@ definitions:
         format: date-time
       profile_url:
         type: string
-    
+
   LoginUser:
     properties:
       email:
         type: string
       password:
         type: string
-  
+
   NewUser:
     properties:
       display_name:
@@ -395,7 +401,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Answer'
-  
+
   QuestionBrowse:
     properties:
       question_id:
@@ -422,7 +428,7 @@ definitions:
         type: string
       description:
         type: string
-        
+
   Answer:
     properties:
       answer_id:
@@ -478,7 +484,7 @@ definitions:
   #     user:
   #       type: object
   #       $ref: '#/definitions/User'
-  
+
   # MeowAnswer:
   #   properties:
   #     up:
@@ -489,4 +495,4 @@ definitions:
   #     user:
   #       type: object
   #       $ref: '#/definitions/User'
-        
+

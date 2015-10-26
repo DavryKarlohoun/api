@@ -22,6 +22,6 @@ json.a question.answers.by_meows do |a|
     json.email a.user.email
     json.display_name a.user.display_name
     json.user_meows a.user.net_meows
-    json.profile_url "https://ourapp.com/users/#{a.user.id}"
+    json.profile_url "https://davrykarlohoun--gui.firebaseapp.com/users/#{a.user.id}"
   end
 end

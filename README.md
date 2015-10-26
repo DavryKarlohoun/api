@@ -1,28 +1,18 @@
-== README
+# Introduction
+![Cat Overflow](images/stack-undertow.png)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+API for the Cat Overflow application.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Description
+Use our API to ask questions, post answers, give meows to answers and questions.
+
+Database mode: https://www.lucidchart.com/documents/view/344365a8-55c7-4977-8b7b-3a4da4cb3a49
+
+## Usage
+API Documentation:  https://cats-overflow.herokuapp.com
+
+BREAD model:
+![BREAD Model](images/BREAD-analysis.png)
+
+
